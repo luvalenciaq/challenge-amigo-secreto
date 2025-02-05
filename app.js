@@ -1,8 +1,14 @@
 let listaAmigos = [];
 
+document.getElementById('amigo').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {  
+        agregarAmigo();
+    }
+});
+
 function agregarAmigo(){
     let amigo = document.getElementById('amigo').value;
-    let regex = /^[A-Za-z]+( [A-Za-z]+)*$/;
+    let regex = /^[A-Za-z]{2,}( [A-Za-z]{2,})*$/;
 
     if(!regex.test(amigo)){
         alert('Por favor, inserte un nombre válido');
@@ -16,6 +22,7 @@ function agregarAmigo(){
         listaAmigos.push(amigo);
         limpiarCaja();
         actualizarLista(listaAmigos);
+        document.getElementById("listaAmigos").style.display = "block";
     }
 }
 
@@ -58,16 +65,24 @@ function sortearAmigo(){
        return;
     }
 
-    let aleatorio = Math.floor(Math.random()*listaAmigos.length);
-    let amigoSorteado = listaAmigos[aleatorio];
-
-    document.getElementById("resultado").innerHTML = "Amigo sorteado: " + amigoSorteado;
+    document.getElementById("spinner").style.display = "block";
 
     document.querySelector('.button-draw').setAttribute('disabled','true');
     document.querySelector('.button-add').setAttribute('disabled','true');
+
+    setTimeout(() => {
+    let aleatorio = Math.floor(Math.random()*listaAmigos.length);
+    let amigoSorteado = listaAmigos[aleatorio];
+
+    document.getElementById("spinner").style.display = "none";
+    document.getElementById("resultado").innerHTML = "Amigo sorteado: " + amigoSorteado;
+    document.getElementById("listaAmigos").style.display = "none";
+
+
     document.querySelector('.button-reset').removeAttribute('disabled');
 
     actualizarLista();
+    }, 1500);
 }
 
 function reiniciar(){

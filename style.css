@@ -4,6 +4,7 @@
     --color-tertiary: #DECDF5;
     --color-button: #A297B6;
     --color-button-hover: #656176;
+    --color-button-hover2: #105c54;
     --color-text: #534D56;
     --color-white: #FFFFFF;
 }
@@ -13,6 +14,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 1rem;
 }
 
 body {
@@ -48,8 +50,8 @@ img{
 .input-section {
     flex: 60%;
     background-color: var(--color-secondary);
-    border: 1px solid #000;
-    border-radius: 64px 64px 0 0;
+    border: 2px solid #000;
+    border-radius: 4rem 4rem 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -151,17 +153,53 @@ ul {
     list-style-type: none;
     color: var(--color-text);
     font-family: "Inter", sans-serif;
-    font-size: 18px;
-    margin: 20px 0;
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+li{
+    margin: 15px;
 }
 
 .result-list {
-    margin-top: 15px;
+    margin: 40px;
+    padding: 20px;
     color: #AD6A6C;
-;    font-size: 22px;
+    font-size: 22px;
     font-weight: bold;
     text-align: center;
 }
+
+.result-list:empty{
+    display: none;
+}
+      
+.spinner {
+    display: none;
+    margin: 20px;
+    width: 60px;
+    aspect-ratio: 1;
+    background: linear-gradient(#1B998B 0 0) bottom/100% 0% no-repeat #ccc;
+    -webkit-mask: 
+      radial-gradient(circle at 60% 65%, #000 62%, #0000 65%) top left, 
+      radial-gradient(circle at 40% 65%, #000 62%, #0000 65%) top right, 
+      linear-gradient(to bottom left, #000 42%,#0000 43%) bottom left , 
+      linear-gradient(to bottom right,#000 42%,#0000 43%) bottom right;
+    mask:
+    radial-gradient(circle at 60% 65%, #000 62%, #0000 65%) top left, 
+    radial-gradient(circle at 40% 65%, #000 62%, #0000 65%) top right, 
+    linear-gradient(to bottom left, #000 42%,#0000 43%) bottom left , 
+    linear-gradient(to bottom right,#000 42%,#0000 43%) bottom right;
+
+    -webkit-mask-size: 50% 50%;
+    mask-size: 50% 50%;;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;;
+    animation: l19 1.5s infinite linear;
+  }
+  @keyframes l19 {
+      90%,100% {background-size:100% 100%}
+  }
 
 /* Botón de sortear título */
 
@@ -169,7 +207,7 @@ ul {
     display: flex;
     gap: 20px;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin: 30px;
 }
 
 .button-draw,
@@ -177,20 +215,24 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 20px; /* Reducido */
-    font-size: 0.9rem; /* Tamaño de texto más pequeño */
-    width: auto; /* No ocupa todo el ancho */
-    min-width: 150px; /* Ajustar tamaño mínimo */
-    max-width: 200px; /* Ajustar tamaño máximo */
+    padding: 10px 20px; 
+    font-size: 0.9rem; 
+    width: 200px;
     color: var(--color-white);
-    background-color: var(--color-button);
     gap: 10px;
 
 }
 
+.button-draw {
+    background-color: var(--color-button);
+}
+
+.button-reset {
+    background-color: var(--color-primary);
+}
+
 .button-draw:disabled, 
 .button-reset:disabled{
-    background-color: var(--color-tertiary);
     color: var(--color-text);
     cursor: not-allowed;
     opacity: 0.4;
@@ -203,7 +245,87 @@ ul {
 .button-reset img {
     width: 25px; 
 }
-.button-draw:hover,
-.button-reset:hover {
+.button-draw:hover{
     background-color: var(--color-button-hover);
+}
+
+.button-reset:hover{
+    background-color: var(--color-button-hover2);
+}
+
+/* Media Queries para dispositivos móviles y tabletas */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+
+    .header-banner {
+        gap: 10px;
+    }    
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    img{
+        width: 60%;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .button-add {
+        width: 35%;
+        font-size: 0.7rem;
+        padding: 0;
+    }
+
+    .input-name::placeholder {
+        font-size: 0.8rem;
+    }
+
+    .result-list {
+        font-size: 1.1rem;
+        margin: 30px;
+        padding: 15px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 0;
+    }
+
+    .button-draw, .button-reset {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+}
+
+/* Pantallas de tamaño medio (tabletas) */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+    }
+
+    img {
+        width: 50%;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .input-wrapper {
+        max-width: 80%;
+    }
+
+    .input-name::placeholder {
+        font-size: 1rem;
+    }
+
+    .result-list {
+        font-size: 1.7rem;
+    }
 }
