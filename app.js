@@ -53,8 +53,8 @@ function eliminarAmigo(index) {
 }
 
 function sortearAmigo(){
-    if(listaAmigos.length == 0){
-       alert('Debe ingresar al menos un amigo');
+    if(listaAmigos.length <= 1){
+       alert('Debe ingresar mínimo dos nombres');
        return;
     }
 
@@ -65,7 +65,18 @@ function sortearAmigo(){
 
     document.querySelector('.button-draw').setAttribute('disabled','true');
     document.querySelector('.button-add').setAttribute('disabled','true');
+    document.querySelector('.button-reset').removeAttribute('disabled');
 
     actualizarLista();
+}
+
+function reiniciar(){
+    listaAmigos = [];
+    document.getElementById("resultado").innerHTML = "";
+    document.querySelector('.button-draw').removeAttribute('disabled');
+    document.querySelector('.button-add').removeAttribute('disabled');
+    document.querySelector('.button-reset').setAttribute('disabled', 'true');
+    actualizarLista();
+    
 }
 
