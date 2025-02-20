@@ -1,5 +1,3 @@
-# challenge-amigo-secreto
-
 # Sorteo de Amigo Secreto
 
 Este es un programa en JavaScript que permite a los usuarios agregar nombres a una lista y luego realizar un sorteo para seleccionar aleatoriamente un "amigo secreto".
